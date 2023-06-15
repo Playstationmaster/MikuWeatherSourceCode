@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/forecastWeatherIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/tenki_hare"
+        android:layout_weight="0"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="    "
+        android:id="@+id/spaaaaaaaaaace"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="4">
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textColor="@color/weathertext.white"/>
+
+        <TextView
+            android:id="@+id/forecastTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/setting.textTitle"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/condition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Condition"
+            android:textColor="@color/weathertext.white"/>
+
+        <TextView
+            android:id="@+id/forecastCondition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/setting.textTitle"
+            android:text="TextView" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="5">
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Temperature"
+            android:textColor="@color/weathertext.white"/>
+
+        <TextView
+            android:id="@+id/forecastTemp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/setting.textTitle"
+            android:text="TextView" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/setting.back">
+
+    <ImageView
+        android:id="@+id/titleimage"
+        android:layout_width="168dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/action_title" />
+
+    <ImageView
+        android:id="@+id/weatherIcon"
+        android:layout_width="153dp"
+        android:layout_height="147dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/locationName"
+        app:srcCompat="@mipmap/tenki_hare" />
+
+    <TextView
+        android:id="@+id/currentlocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Current Location"
+        android:textColor="@color/weathertext.white"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleimage" />
+
+    <TextView
+        android:id="@+id/temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="32dp"
+        android:text="Temperature"
+        android:textColor="@color/weathertext.white"
+        app:layout_constraintStart_toEndOf="@+id/weatherIcon"
+        app:layout_constraintTop_toBottomOf="@+id/locationName" />
+
+    <TextView
+        android:id="@+id/locationName"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Sapporo, Japan"
+        android:textColor="@color/setting.textTitle"
+        android:textSize="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/currentlocation" />
+
+    <TextView
+        android:id="@+id/currentTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:text="39.3"
+        android:textColor="@color/setting.textTitle"
+        android:textSize="40dp"
+        app:layout_constraintStart_toEndOf="@+id/weatherIcon"
+        app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+    <TextView
+        android:id="@+id/degreecelsius"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:text="°C"
+        android:textColor="@color/setting.textTitle"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/currentTemp"
+        app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+    <TextView
+        android:id="@+id/conditionString"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="0dp"
+        android:text="Sunny?"
+        android:textSize="20dp"
+        android:textColor="@color/weathertext.white"
+        app:layout_constraintStart_toEndOf="@+id/weatherIcon"
+        app:layout_constraintTop_toBottomOf="@+id/currentTemp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:id="@+id/container"
+        android:layout_height="350dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/forecast_fragment"
+            android:tag="forecast_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
