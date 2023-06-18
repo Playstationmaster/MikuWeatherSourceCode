@@ -48,15 +48,17 @@ class CurrentWeather : AppWidgetProvider() {
     override fun onReceive(context: Context?, intent: Intent?) {
         super.onReceive(context, intent)
     }
-}
 
-internal fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, locationString: String, currentCondition:String) {
-    // Construct the RemoteViews object
-    val views = RemoteViews(context.packageName, R.layout.current_weather)
-    views.setTextViewText(R.id.appwidget_title, "Cannot fetch data")
-    views.setImageViewResource(R.id.widgetWeatherIcon, R.mipmap.tenki_hare)
-    views.setTextViewText(R.id.widgetQueryLocation, locationString)
-    views.setTextViewText(R.id.widgetCurrentWeather, currentCondition)
-    // Instruct the widget manager to update the widget
-    appWidgetManager.updateAppWidget(appWidgetId, views)
+    companion object {
+        fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, locationString: String, currentCondition:String) {
+            // Construct the RemoteViews object
+            val views = RemoteViews(context.packageName, R.layout.current_weather)
+            views.setTextViewText(R.id.appwidget_title, "Cannot fetch data")
+            views.setImageViewResource(R.id.widgetWeatherIcon, R.mipmap.tenki_hare)
+            views.setTextViewText(R.id.widgetQueryLocation, locationString)
+            views.setTextViewText(R.id.widgetCurrentWeather, currentCondition)
+            // Instruct the widget manager to update the widget
+            appWidgetManager.updateAppWidget(appWidgetId, views)
+        }
+    }
 }
