@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                 forecastRecyclerView.layoutManager = LinearLayoutManager(this)
                 forecastRecyclerView.adapter = ForecastAdapter(hour)
             })
-        }, 200)
+        }, 500)
     }
 
     //Main Screen Weather Data Display
