@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var locationCallback: LocationCallback
 
     //Query Location
-    var mLat by Delegates.notNull<Double>()
-    var mLon by Delegates.notNull<Double>()
+    var mLat:Double = 0.0
+    var mLon:Double = 0.0
     var hour: ArrayList<Hour> = ArrayList()
 
     //Main screen start
