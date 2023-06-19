@@ -31,6 +31,7 @@ import com.thepseudoartistclan.mikuweather.viewmodel.WeatherViewModel
 import com.thepseudoartistclan.mikuweather.viewmodel.WeatherViewModelFactory
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.properties.Delegates
 
 private val TAG = "LocationServices"
 private val LOCATION_PERMISSION_CODE = 1
@@ -42,8 +43,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var locationCallback: LocationCallback
 
     //Query Location
-    var mLat:Double = 0.0
-    var mLon:Double = 0.0
+    var mLat by Delegates.notNull<Double>()
+    var mLon by Delegates.notNull<Double>()
     var hour: ArrayList<Hour> = ArrayList()
 
     //Main screen start
