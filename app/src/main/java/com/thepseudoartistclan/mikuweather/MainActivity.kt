@@ -51,34 +51,47 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        weatherUpdate()
+        serviceInitialisation()
     }
 
     //Main Function
-    private fun weatherUpdate() {
+    private fun serviceInitialisation() {
         val manager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             showAlertLocation()
         }
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         initLocationCallbacks()
-        Handler().postDelayed({
-            val weatherInstance = WeatherService.getInstance()
-            val repository = WeatherRepository(weatherInstance)
-            val viewModel = ViewModelProvider(this, WeatherViewModelFactory(repository)).get(WeatherViewModel::class.java)
-            viewModel.getCurrentTemp(mLat.toString() + "," + mLon.toString())
-            viewModel.weather.observe(this, androidx.lifecycle.Observer {
-                currentWeatherDisplay(it.current.condition.code, it.current.is_day)
-                findViewById<TextView>(R.id.currentTemp).setText(it.current.temp_c.toString())
-                findViewById<TextView>(R.id.conditionString).setText(it.current.condition.text)
-                hour = it.forecast.forecastday[0].hour as ArrayList<Hour>
-                hour.addAll(it.forecast.forecastday[1].hour)
+        checkLocationUpdate()
+    }
 
-                val forecastRecyclerView = findViewById<RecyclerView>(R.id.forecast_fragment)
-                forecastRecyclerView.layoutManager = LinearLayoutManager(this)
-                forecastRecyclerView.adapter = ForecastAdapter(hour)
-            })
-        }, 500)
+    private fun checkLocationUpdate() {
+        if(mLat != 0.0 && mLon != 0.0) {
+            weatherUpdate()
+        }
+        else  {
+            Handler().postDelayed({
+                 checkLocationUpdate()
+            }, 50)
+        }
+    }
+
+    private fun weatherUpdate() {
+        val weatherInstance = WeatherService.getInstance()
+        val repository = WeatherRepository(weatherInstance)
+        val viewModel = ViewModelProvider(this, WeatherViewModelFactory(repository)).get(WeatherViewModel::class.java)
+        viewModel.getCurrentTemp(mLat.toString() + "," + mLon.toString())
+        viewModel.weather.observe(this, androidx.lifecycle.Observer {
+            currentWeatherDisplay(it.current.condition.code, it.current.is_day)
+            findViewById<TextView>(R.id.currentTemp).setText(it.current.temp_c.toString())
+            findViewById<TextView>(R.id.conditionString).setText(it.current.condition.text)
+            hour = it.forecast.forecastday[0].hour as ArrayList<Hour>
+            hour.addAll(it.forecast.forecastday[1].hour)
+
+            val forecastRecyclerView = findViewById<RecyclerView>(R.id.forecast_fragment)
+            forecastRecyclerView.layoutManager = LinearLayoutManager(this)
+            forecastRecyclerView.adapter = ForecastAdapter(hour)
+        })
     }
 
     //Main Screen Weather Data Display
