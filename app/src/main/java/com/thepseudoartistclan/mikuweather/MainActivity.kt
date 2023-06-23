@@ -94,6 +94,13 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    //Activity Restart
+    private fun activityRestart() {
+        val intent = intent
+        finish()
+        startActivity(intent)
+    }
+
     //Main Screen Weather Data Display
     private fun currentWeatherDisplay(code: Int, isDay: Int) {
         var dayCheck = false
