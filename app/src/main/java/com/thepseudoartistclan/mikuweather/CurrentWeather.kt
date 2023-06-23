@@ -51,6 +51,11 @@ class CurrentWeather : AppWidgetProvider() {
         super.onReceive(context, intent)
     }
 
+    override fun onDeleted(context: Context?, appWidgetIds: IntArray?) {
+        // Enter relevant functionality for when the last widget is deleted
+        super.onDeleted(context, appWidgetIds)
+    }
+
     companion object {
         fun updateAppWidget(context: Context, appWidgetManager: AppWidgetManager, appWidgetId: Int, locationString: String, currentCondition:String) {
             // Construct the RemoteViews object
