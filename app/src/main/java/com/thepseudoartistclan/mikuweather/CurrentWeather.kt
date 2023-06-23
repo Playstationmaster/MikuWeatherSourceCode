@@ -28,9 +28,10 @@ import com.thepseudoartistclan.mikuweather.viewmodel.WeatherViewModelFactory
  * Implementation of App Widget functionality.
  */
 class CurrentWeather : AppWidgetProvider() {
+    private var coordinates = "Unavailable"
+    private var currentcondition = "Unavailable"
+
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
-        var coordinates = "Unavailable"
-        var currentcondition = "Unavailable"
         // There may be multiple widgets active, so update all of them
         for (appWidgetId in appWidgetIds) {
             updateAppWidget(context, appWidgetManager, appWidgetId, coordinates, currentcondition)
