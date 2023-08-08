@@ -29,6 +29,7 @@ import com.thepseudoartistclan.mikuweather.modal.Hour
 import com.thepseudoartistclan.mikuweather.repository.WeatherRepository
 import com.thepseudoartistclan.mikuweather.viewmodel.WeatherViewModel
 import com.thepseudoartistclan.mikuweather.viewmodel.WeatherViewModelFactory
+import kotlinx.coroutines.CoroutineExceptionHandler
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
