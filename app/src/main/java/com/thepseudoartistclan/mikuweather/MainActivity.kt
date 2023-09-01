@@ -77,6 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Throws (java.lang.IndexOutOfBoundsException::class)
     private fun weatherUpdate() {
         val weatherInstance = WeatherService.getInstance()
         val repository = WeatherRepository(weatherInstance)
