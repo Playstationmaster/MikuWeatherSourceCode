@@ -15,7 +15,7 @@ class WeatherViewModel(private val repository: WeatherRepository) : ViewModel() 
     val weather : MutableLiveData<Weather> = MutableLiveData()
 
     //WeatherAPI API key
-    val apikey = "12eb644962ed4576b4d181719230306"
+    val apikey = "" //use your own API key
 
     fun getCurrentTemp(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
