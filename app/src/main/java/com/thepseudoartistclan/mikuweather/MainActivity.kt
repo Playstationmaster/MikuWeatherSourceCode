@@ -82,18 +82,18 @@ class MainActivity : AppCompatActivity() {
         val weatherInstance = WeatherService.getInstance()
         val repository = WeatherRepository(weatherInstance)
         val viewModel = ViewModelProvider(this, WeatherViewModelFactory(repository)).get(WeatherViewModel::class.java)
-        viewModel.getCurrentTemp(mLat.toString() + "," + mLon.toString())
-        viewModel.weather.observe(this, androidx.lifecycle.Observer {
+        viewModel.getCurrentTemp("$mLat,$mLon")
+        viewModel.weather.observe(this) {
             currentWeatherDisplay(it.current.condition.code, it.current.is_day)
-            findViewById<TextView>(R.id.currentTemp).setText(it.current.temp_c.toString())
-            findViewById<TextView>(R.id.conditionString).setText(it.current.condition.text)
+            findViewById<TextView>(R.id.currentTemp).text = it.current.temp_c.toString()
+            findViewById<TextView>(R.id.conditionString).text = it.current.condition.text
             hour = it.forecast.forecastday[0].hour as ArrayList<Hour>
             hour.addAll(it.forecast.forecastday[1].hour)
 
             val forecastRecyclerView = findViewById<RecyclerView>(R.id.forecast_fragment)
             forecastRecyclerView.layoutManager = LinearLayoutManager(this)
             forecastRecyclerView.adapter = ForecastAdapter(hour)
-        })
+        }
     }
 
     //Activity Restart
@@ -234,7 +234,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        requestCode != LOCATION_PERMISSION_CODE?: return
+        requestCode != (LOCATION_PERMISSION_CODE ?: return)
         if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
             Log.d(TAG, "Permission denied")
             finish()
@@ -256,7 +256,7 @@ class MainActivity : AppCompatActivity() {
             val myIntent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
             startActivity(myIntent)
         }
-        dialog.setNegativeButton("Cancel") { dialog, _ -> dialog.cancel() }
+        dialog.setNegativeButton("Cancel") { alertDialog, _ -> alertDialog.cancel() }
         dialog.show()
     }
 
@@ -264,11 +264,11 @@ class MainActivity : AppCompatActivity() {
         val addresses: List<Address>?
         val geoCoder = Geocoder(applicationContext, Locale.getDefault())
         addresses = geoCoder.getFromLocation(latitude, longitude, 1)
-        if (addresses != null && addresses.isNotEmpty()) {
+        if (!addresses.isNullOrEmpty()) {
             val city: String = addresses[0].locality
             val country: String = addresses[0].countryName
-            var addressDetailsLabel = findViewById(R.id.locationName) as TextView
-            addressDetailsLabel.setText("$city, $country")
+            val addressDetailsLabel: TextView = findViewById(R.id.locationName)
+            addressDetailsLabel.text = "$city, $country"
         }
     }
 
