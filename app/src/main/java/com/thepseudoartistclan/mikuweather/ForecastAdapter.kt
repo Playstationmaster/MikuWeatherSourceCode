@@ -1,6 +1,5 @@
 package com.thepseudoartistclan.mikuweather
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.thepseudoartistclan.mikuweather.modal.Hour
 
-class ForecastAdapter(var forecastList: ArrayList<Hour>): RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
+class ForecastAdapter(private var forecastList: ArrayList<Hour>): RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false);
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -21,8 +20,8 @@ class ForecastAdapter(var forecastList: ArrayList<Hour>): RecyclerView.Adapter<F
         forecastHolder.bind(forecast)
     }
 
-    inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener  {
-        lateinit var forecast: Hour
+    inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view), View.OnClickListener  {
+        private lateinit var forecast: Hour
         init {
             itemView.setOnClickListener(this)
         }
@@ -37,9 +36,10 @@ class ForecastAdapter(var forecastList: ArrayList<Hour>): RecyclerView.Adapter<F
             val tempView: TextView = view.findViewById(R.id.forecastTemp)
             val conditionView: TextView = view.findViewById(R.id.forecastCondition)
 
-            timeView.setText(forecast.time)
-            tempView.setText(forecast.temp_c.toString() + "°C")
-            conditionView.setText(forecast.condition.text)
+            timeView.text = forecast.time
+            val temperature = forecast.temp_c.toString() + " °C"
+            tempView.text = temperature
+            conditionView.text = forecast.condition.text
 
             var dayCheck = false
             if(forecast.is_day == 1) dayCheck = true
