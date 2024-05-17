@@ -2,19 +2,20 @@ package com.thepseudoartistclan.mikuweather
 
 import android.Manifest
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
-import android.content.Intent
 import android.location.LocationManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,10 +30,7 @@ import com.thepseudoartistclan.mikuweather.modal.Hour
 import com.thepseudoartistclan.mikuweather.repository.WeatherRepository
 import com.thepseudoartistclan.mikuweather.viewmodel.WeatherViewModel
 import com.thepseudoartistclan.mikuweather.viewmodel.WeatherViewModelFactory
-import kotlinx.coroutines.CoroutineExceptionHandler
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.properties.Delegates
 
 private val TAG = "LocationServices"
 private val LOCATION_PERMISSION_CODE = 1
@@ -46,13 +44,20 @@ class MainActivity : AppCompatActivity() {
     //Query Location
     var mLat:Double = 0.0
     var mLon:Double = 0.0
-    var hour: ArrayList<Hour> = ArrayList()
+    private var hour:ArrayList<Hour> = ArrayList()
+    var city:String = "" //Required for location calls
 
     //Main screen start
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         serviceInitialisation()
+
+
+        var logoicon = findViewById<View>(R.id.titleimage) as ImageView
+        logoicon.setOnClickListener(View.OnClickListener {
+            activityRestart()
+        })
     }
 
     //Main Function
@@ -67,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkLocationUpdate() {
-        if(mLat != 0.0 && mLon != 0.0) {
+        if((mLat != 0.0 && mLon != 0.0) || !city.equals("")) {
             weatherUpdate()
         }
         else  {
@@ -82,14 +87,18 @@ class MainActivity : AppCompatActivity() {
         val weatherInstance = WeatherService.getInstance()
         val repository = WeatherRepository(weatherInstance)
         val viewModel = ViewModelProvider(this, WeatherViewModelFactory(repository)).get(WeatherViewModel::class.java)
-        viewModel.getCurrentTemp("$mLat,$mLon")
+        if(mLat != 0.0 && mLon != 0.0) {
+            viewModel.getCurrentTemp("$mLat,$mLon")
+        }
+        else {
+            viewModel.getCurrentTemp(city) //For unknown reason, latitute and longitude are not imported when teokbyeol-si or gwangyeok-si cities are queried.
+        }
         viewModel.weather.observe(this) {
             currentWeatherDisplay(it.current.condition.code, it.current.is_day)
             findViewById<TextView>(R.id.currentTemp).text = it.current.temp_c.toString()
             findViewById<TextView>(R.id.conditionString).text = it.current.condition.text
             hour = it.forecast.forecastday[0].hour as ArrayList<Hour>
             hour.addAll(it.forecast.forecastday[1].hour)
-
             val forecastRecyclerView = findViewById<RecyclerView>(R.id.forecast_fragment)
             forecastRecyclerView.layoutManager = LinearLayoutManager(this)
             forecastRecyclerView.adapter = ForecastAdapter(hour)
@@ -265,9 +274,15 @@ class MainActivity : AppCompatActivity() {
         val geoCoder = Geocoder(applicationContext, Locale.getDefault())
         addresses = geoCoder.getFromLocation(latitude, longitude, 1)
         if (!addresses.isNullOrEmpty()) {
-            val city: String = addresses[0].locality
+            if (addresses[0].locality != null) {
+                city = addresses[0].locality //Example: Sydney (AUS), San Francisco (USA), Changwon-si (KOR), Sapporo (JPN)
+            }
+            else if (addresses[0].adminArea != null) {
+                city = addresses[0].adminArea //Example: New South Wales (AUS), California (USA), Gyeongsangnam-do (KOR), Seoul (KOR), Hokkaido (JPN)
+            }
             val country: String = addresses[0].countryName
             val addressDetailsLabel: TextView = findViewById(R.id.locationName)
+
             addressDetailsLabel.text = "$city, $country"
         }
     }

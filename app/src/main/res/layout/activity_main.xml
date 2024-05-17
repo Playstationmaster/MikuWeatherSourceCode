@@ -11,7 +11,7 @@
         android:id="@+id/titleimage"
         android:layout_width="168dp"
         android:layout_height="39dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="26dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -112,6 +112,9 @@
                 android:textColor="@color/setting.textTitle"
                 android:textSize="24sp" />
         </LinearLayout>
+
+
+
     </LinearLayout>
 
     <FrameLayout
@@ -131,4 +134,7 @@
             android:layout_marginRight="16dp"
             android:tag="forecast_fragment" />
     </FrameLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
