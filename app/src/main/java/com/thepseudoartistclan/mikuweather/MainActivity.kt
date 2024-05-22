@@ -42,10 +42,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var locationCallback: LocationCallback
 
     //Query Location
-    var mLat:Double = 0.0
-    var mLon:Double = 0.0
+    private var mLat:Double = 0.0
+    private var mLon:Double = 0.0
     private var hour:ArrayList<Hour> = ArrayList()
-    var city:String = "" //Required for location calls
+    private var city:String = "" //Required for location calls
 
     //Main screen start
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,8 +53,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         serviceInitialisation()
 
-
-        var logoicon = findViewById<View>(R.id.titleimage) as ImageView
+        val logoicon = findViewById<View>(R.id.titleimage) as ImageView
         logoicon.setOnClickListener(View.OnClickListener {
             activityRestart()
         })
@@ -96,7 +95,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.weather.observe(this) {
             currentWeatherDisplay(it.current.condition.code, it.current.is_day)
             findViewById<TextView>(R.id.currentTemp).text = it.current.temp_c.toString()
-            findViewById<TextView>(R.id.conditionString).text = it.current.condition.text
+            findViewById<TextView>(R.id.conditionString).text = it.current.condition.text // Update code with translation!!!
             hour = it.forecast.forecastday[0].hour as ArrayList<Hour>
             hour.addAll(it.forecast.forecastday[1].hour)
             val forecastRecyclerView = findViewById<RecyclerView>(R.id.forecast_fragment)
@@ -117,6 +116,7 @@ class MainActivity : AppCompatActivity() {
         var dayCheck = false
         if(isDay == 1) dayCheck = true
         val weatherIcon:ImageView = findViewById(R.id.weatherIcon)
+        val weatherCondition:TextView = findViewById(R.id.currentTemp)
         when(code) {
             //Sunny
             1000 -> (if(dayCheck) {weatherIcon.setImageResource(R.mipmap.tenki_hare)} else {weatherIcon.setImageResource(R.mipmap.tenki_hare_yoru)})
