@@ -97,4 +97,9 @@
     <string name="code1279_night">Neve debole a tratti in zona e tuoni</string>
     <string name="code1282_day">Neve debole a tratti in zona e tuoni</string>
     <string name="code1282_night">Neve debole a tratti in zona e tuoni</string>
+    <string name="interface_currentTemp">Temperatura</string>
+    <string name="interface_listTime">Tempo</string>
+    <string name="interface_listCondition">Tempo Atmosferico</string>
+    <string name="interface_listTemp">Temperatura</string>
+    <string name="interface_currentLocation">Posizione attuale</string>
 </resources>

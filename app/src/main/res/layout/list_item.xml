@@ -29,7 +29,7 @@
             android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Time"
+            android:text="@string/interface_listTime"
             android:textColor="@color/weathertext.white" />
 
         <TextView
@@ -43,7 +43,7 @@
             android:id="@+id/condition"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Condition"
+            android:text="@string/interface_listCondition"
             android:textColor="@color/weathertext.white" />
 
         <TextView
@@ -64,7 +64,7 @@
             android:id="@+id/temperature"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Temperature"
+            android:text="@string/interface_listTemp"
             android:textColor="@color/weathertext.white"/>
 
         <TextView

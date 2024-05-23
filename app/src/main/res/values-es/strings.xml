@@ -97,4 +97,9 @@
     <string name="code1279_night">Miejscowe, lekkie opady śniegu z grzmieniem w okolicy</string>
     <string name="code1282_day">Nieve moderada con tormenta en la región</string>
     <string name="code1282_night">Nieve moderada con tormenta en la región</string>
+    <string name="interface_currentTemp">Temperatura</string>
+    <string name="interface_listTime">Tiempo</string>
+    <string name="interface_listCondition">Clima</string>
+    <string name="interface_listTemp">Temperatura</string>
+    <string name="interface_currentLocation">Ubicación actual</string>
 </resources>

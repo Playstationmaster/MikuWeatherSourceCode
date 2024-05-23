@@ -97,4 +97,9 @@
     <string name="code1279_night">雷を伴う軽い雪</string>
     <string name="code1282_day">雷を伴う軽い雪</string>
     <string name="code1282_night">雷を伴う軽い雪</string>
+    <string name="interface_currentTemp">現在の気温</string>
+    <string name="interface_listTime">時間</string>
+    <string name="interface_listCondition">天気</string>
+    <string name="interface_listTemp">気温</string>
+    <string name="interface_currentLocation">"現在位置 "</string>
 </resources>

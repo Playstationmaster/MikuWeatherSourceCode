@@ -34,7 +34,7 @@
                 android:id="@+id/widgetTextLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:text="@string/interface_currentLocation"
                 android:textColor="@color/weathertext.white" />
 
             <TextView
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/weathertext.white"
-                android:text="Current condition" />
+                android:text="@string/interface_listCondition" />
 
             <TextView
                 android:id="@+id/widgetCurrentWeather"

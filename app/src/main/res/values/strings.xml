@@ -100,4 +100,10 @@
     <string name="code1279_night">Patchy light snow in area with thunder</string>
     <string name="code1282_day">Moderate or heavy snow in area with thunder</string>
     <string name="code1282_night">Moderate or heavy snow in area with thunder</string>
+
+    <string name="interface_currentTemp">Temperature</string>
+    <string name="interface_currentLocation">Current Location</string>
+    <string name="interface_listTime">Time</string>
+    <string name="interface_listCondition">Condition</string>
+    <string name="interface_listTemp">Temperature</string>
 </resources>

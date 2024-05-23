@@ -97,4 +97,9 @@
     <string name="code1279_night">천둥을 동반한 지역 곳곳의 가벼운 눈</string>
     <string name="code1282_day">천둥을 동반한 지역 곳곳의 가벼운 눈</string>
     <string name="code1282_night">천둥을 동반한 지역 곳곳의 가벼운 눈</string>
+    <string name="interface_currentTemp">현재 기온</string>
+    <string name="interface_listTime">시간</string>
+    <string name="interface_listCondition">날씨</string>
+    <string name="interface_listTemp">기온</string>
+    <string name="interface_currentLocation">현재 위치</string>
 </resources>

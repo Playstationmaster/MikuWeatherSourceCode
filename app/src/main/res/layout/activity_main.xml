@@ -24,7 +24,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:text="Current Location"
+        android:text="@string/interface_currentLocation"
         android:textColor="@color/weathertext.white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,7 @@
                 android:id="@+id/temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Temperature"
+                android:text="@string/interface_currentTemp"
                 android:textColor="@color/weathertext.white"
                 android:textSize="20sp" />
 

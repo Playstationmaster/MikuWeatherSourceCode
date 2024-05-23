@@ -97,4 +97,9 @@
     <string name="code1279_night">Légère neige éparse avec tonnerre par endroit</string>
     <string name="code1282_day">Légère neige éparse avec tonnerre par endroit</string>
     <string name="code1282_night">Légère neige éparse avec tonnerre par endroit</string>
+    <string name="interface_currentTemp">Température</string>
+    <string name="interface_listTime">Temps</string>
+    <string name="interface_listCondition">Météo</string>
+    <string name="interface_listTemp">Température</string>
+    <string name="interface_currentLocation">"Localisation actuelle "</string>
 </resources>
