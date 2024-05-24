@@ -95,8 +95,8 @@
     <string name="code1276_night">mäßiger bis starker Regenfall mit Gewitter</string>
     <string name="code1279_day">stellenweise leichter Schneefall mit Gewitter</string>
     <string name="code1279_night">stellenweise leichter Schneefall mit Gewitter</string>
-    <string name="code1282_day">stellenweise leichter Schneefall mit Gewitter</string>
-    <string name="code1282_night">stellenweise leichter Schneefall mit Gewitter</string>
+    <string name="code1282_day">Mäßiger bis starker Schneefall mit Gewitter</string>
+    <string name="code1282_night">Mäßiger bis starker Schneefall mit Gewitter</string>
     <string name="interface_currentTemp">Temperatur</string>
     <string name="interface_listTime">Zeit</string>
     <string name="interface_listCondition">Wetter</string>
